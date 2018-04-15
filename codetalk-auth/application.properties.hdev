@@ -1,0 +1,76 @@
+################### DataSource Configuration ##########################
+spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
+spring.datasource.druid.url=jdbc:mysql://192.168.1.105:3306/authdb?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+spring.datasource.druid.username=authdb
+spring.datasource.druid.password=welcome5
+spring.datasource.druid.driver-class-name=com.mysql.jdbc.Driver
+
+spring.datasource.druid.initial-size=5
+spring.datasource.druid.max-active=20
+spring.datasource.druid.min-idle=5
+# 建立连接最长等待时间
+spring.datasource.druid.max-wait=60000
+spring.datasource.druid.pool-prepared-statements=true
+spring.datasource.druid.max-pool-prepared-statement-per-connection-size=20
+## -Ddruid.mysql.usePingMethod=false
+spring.datasource.druid.validation-query=set names utf8mb4
+spring.datasource.druid.test-while-idle=true
+spring.datasource.druid.test-on-borrow=true
+spring.datasource.druid.test-on-return=false
+### 关闭空闲连接的间隔
+spring.datasource.druid.time-between-eviction-runs-millis=60000
+### 连接最小存活时间
+spring.datasource.druid.min-evictable-idle-time-millis=300000
+spring.datasource.druid.filters=stat,log4j
+
+spring.datasource.druid.web-stat-filter.enabled=false
+spring.datasource.druid.stat-view-servlet.enabled=false
+
+################### Dubbo Configuration ##########################
+
+spring.dubbo.application.name=provider
+spring.dubbo.registry.address=zookeeper://127.0.0.1:2186
+spring.dubbo.protocol.name=dubbo
+spring.dubbo.protocol.port=30881
+
+################### Redis Configuration ##########################
+
+#连接池建立最大阻塞等待时间
+spring.redis.pool.max-wait=1000
+#超时设置
+spring.redis.timeout=10000
+
+# Auth 
+auth.redis.host=192.168.1.105
+auth.redis.port=9081
+
+auth.redis.pool.max-total=60
+auth.redis.pool.max-idle=20 
+auth.redis.pool.min-idle=10
+
+# Mesg
+mesg.redis.host=192.168.1.105
+mesg.redis.port=9086
+
+mesg.redis.pool.max-total=60
+mesg.redis.pool.max-idle=20 
+mesg.redis.pool.min-idle=10
+
+# Mesg Sender
+mesg.sender.core-pool-size=3
+mesg.sender.max-pool-size=6
+mesg.sender.keep-alive-millis=60000
+
+################### Auth Config - Signup ###################
+## 注册验证码长度
+auth.signup.verify-code-len=5
+auth.signup.verify-code-width=120
+auth.signup.verify-code-height=40
+auth.signup.verify-code-bgcolor=FFF
+auth.signup.verify-code-textcolor=333
+auth.signup.verify-code-format=png
+## 注册会话过期时间(分钟)
+auth.signup.session-timeout=60
+
+
+

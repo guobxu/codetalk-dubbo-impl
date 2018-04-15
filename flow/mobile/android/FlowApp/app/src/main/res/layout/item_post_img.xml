@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="@dimen/margin_6dp">
+
+    <ImageView
+        android:id="@+id/post_image"
+        android:layout_width="@dimen/post_create_img_w"
+        android:layout_height="@dimen/post_create_img_h"
+        android:scaleType="centerCrop"/>
+
+    <ImageButton
+        android:id="@+id/btn_delete_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:src="@drawable/sel_clear_18dp"
+        android:background="@drawable/sel_bg_circle_gray_18dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="3dp"/>
+
+</FrameLayout>

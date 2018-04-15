@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:flow="http://schemas.android.com/apk/res-auto">
+
+    <!--
+    <item android:state_enabled="true" android:state_pressed="false" flow:state_post_liked="false"
+        android:drawable="@drawable/ic_thumb_up_darkgray_18dp" />
+    <item android:state_enabled="true" android:state_pressed="false" flow:state_post_liked="true"
+        android:drawable="@drawable/ic_thumb_up_accent_18dp" />
+    <item android:state_enabled="true" android:state_pressed="true" flow:state_post_liked="false"
+        android:drawable="@drawable/ic_thumb_up_gray_18dp" />
+    <item android:state_enabled="true" android:state_pressed="true" flow:state_post_liked="true"
+        android:drawable="@drawable/ic_thumb_up_accentpressed_18dp" />
+    -->
+
+    <item android:state_enabled="true" android:state_pressed="false"
+        android:drawable="@drawable/ic_thumb_up_darkgray_18dp" />
+    <item android:state_enabled="true" android:state_pressed="true"
+        android:drawable="@drawable/ic_thumb_up_gray_18dp" />
+
+    <item android:state_enabled="false"
+        android:drawable="@drawable/ic_thumb_up_disabled_18dp" />
+
+</selector>

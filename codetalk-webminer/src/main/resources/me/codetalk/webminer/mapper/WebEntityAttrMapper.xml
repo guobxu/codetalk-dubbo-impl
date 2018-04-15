@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.codetalk.webminer.mapper.WebEntityAttrMapper">
+
+	<insert id="insertAttrList" parameterType="java.util.List">
+		insert into web_entity_attrs(entity_id, attr_key, attr_val)
+		values 
+			<foreach collection ="attrList" item="attr" index= "index" separator =",">(#{attr.entityId}, #{attr.key}, #{attr.val})</foreach>
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

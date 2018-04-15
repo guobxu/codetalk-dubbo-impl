@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SpinnerButton">
+        <attr name="actionButtonText" format="string"/>
+        <attr name="actionButtonTextColor" format="color"/>
+        <attr name="actionButtonTextSize" format="dimension"/>
+        <attr name="actionButtonBackground" format="integer"/>
+        <attr name="actionButtonPaddingLeft" format="dimension"/>
+        <attr name="actionButtonPaddingTop" format="dimension"/>
+        <attr name="actionButtonPaddingRight" format="dimension"/>
+        <attr name="actionButtonPaddingBottom" format="dimension"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="PostLikeState">
+        <attr name="state_post_liked" format="boolean"/>
+    </declare-styleable>
+
+</resources>

@@ -1,0 +1,74 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.codetalk.webminer.mapper.SitePageMapper">
+
+	<resultMap type="me.codetalk.webminer.pojo.SitePage" id="sitePageMap">
+		<result property="id" column="page_id"></result>
+		<result property="url" column="page_url"></result>
+		<result property="type" column="page_type"></result>
+		<result property="status" column="page_status"></result>
+		<result property="errorMsg" column="error_msg"></result>
+		<result property="siteId" column="site_id"></result>
+		<result property="entityTypeId" column="entity_type_id"></result>
+		<result property="lastUpdate" column="last_update"></result>
+		<result property="createDate" column="create_date"></result>
+	</resultMap>
+
+	<resultMap type="me.codetalk.webminer.pojo.SitePageVO" id="sitePageVOMap" extends="sitePageMap">
+		<result property="siteName" column="site_name"></result>
+		
+		<result property="entityType" column="entity_type"></result>
+		
+		<collection property="entityAttrs" ofType="me.codetalk.webminer.pojo.SiteEntityAttr">
+			<result property="key" column="attr_key"></result>
+			<result property="type" column="attr_type"></result>
+			<result property="el" column="attr_el"></result>
+			<result property="name" column="attr_name"></result>
+		</collection>
+	</resultMap>
+
+	<select id="insertPages" parameterType="java.util.List">
+		insert into site_pages (page_id, page_url, page_type, site_id, entity_type_id) values 
+		<foreach collection ="pageList" item="page" index= "index" separator =",">(#{page.id}, #{page.url}, #{page.type}, #{page.siteId}, #{page.entityTypeId})</foreach>
+	</select>
+	
+	<update id="updatePageStatus" parameterType="me.codetalk.webminer.pojo.SitePage">
+		update site_pages 
+		   set last_update = CURRENT_TIMESTAMP
+		   	 , page_status = #{status}	
+			 , error_msg = #{errorMsg}	
+		 where page_id = #{id} 
+	</update>
+	
+	<select id="selectUrlIn" parameterType="java.util.List" resultType="String">
+		select page_url from site_pages 
+		 where page_url in (
+		 	<foreach collection ="urlList" item="url" index= "index" separator =",">#{url}</foreach>
+		 )
+	</select>
+	
+	<select id="selectErrPagesAfter" parameterType="java.sql.Timestamp" resultMap="sitePageVOMap">
+		select sp.page_id, sp.page_url, sp.page_type, sp.page_status, sp.site_id, sp.entity_type_id, 
+			 s.site_name, et.entity_type, ea.attr_key, ea.attr_type, ea.attr_el, ea.attr_name
+		from site_pages sp, sites s, site_entity_types et, site_entity_attrs ea
+	 where sp.page_status = 3
+		 and sp.create_date > #{tsAfter}
+		 and sp.site_id = s.site_id 
+		 and sp.entity_type_id = et.entity_type_id 
+		 and sp.entity_type_id = ea.entity_type_id 
+	 order by sp.last_update asc	
+	</select>
+		
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

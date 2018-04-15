@@ -1,0 +1,64 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.codetalk.apps.xiaoma.user.mapper.UserProjectMapper">
+
+	<resultMap id="userProjectResultMap" type="me.codetalk.apps.xiaoma.user.entity.UserProject">
+		<result property="id" column="user_project_id"></result>
+		<result property="userId" column="user_id"></result>
+		<result property="name" column="project_name"></result>
+		<result property="company" column="project_company"></result>
+		<result property="resp" column="project_resp"></result>
+		<result property="start" column="project_start"></result>
+		<result property="end" column="project_end"></result>
+		<result property="desc" column="project_desc"></result>
+		<result property="url" column="project_url"></result>
+		
+		<result property="createDate" column="create_date"></result>
+		<result property="lastUpdate" column="last_update"></result>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		user_project_id, user_id, project_name, project_company, project_resp, 
+		project_start, project_end, project_desc, project_url, create_date, last_update
+	</sql>
+	
+	<insert id="insertUserProject" parameterType="me.codetalk.apps.xiaoma.user.entity.UserProject" useGeneratedKeys="true" keyProperty="id" keyColumn="user_project_id">
+		insert into user_projects (user_id, project_name, project_company, project_resp, project_start, project_end, 
+									project_desc, project_url, create_date, last_update)
+		values (#{userId}, #{name}, #{company}, #{resp}, #{start}, #{end}, #{desc}, #{url}, UNIX_TIMESTAMP() * 1000, UNIX_TIMESTAMP() * 1000)
+	</insert>
+	
+	<select id="selectUserProjects" parameterType="Long" resultMap="userProjectResultMap">
+		select <include refid="Base_Column_List" />
+		  from user_projects
+		 where user_id = #{userId}
+		   and delete_mark = 0
+		 order by create_date desc
+	</select>
+	
+	<update id="updateUserProject" parameterType="me.codetalk.apps.xiaoma.user.entity.UserProject">
+		update user_projects 
+		   set project_name = #{name}, project_company = #{company}, project_resp = #{resp}, project_start = #{start}, project_end = #{end},
+		   		project_desc = #{desc}, project_url = #{url}, last_update = UNIX_TIMESTAMP() * 1000
+		 where user_project_id = #{id} 
+	</update>
+	
+	<delete id="deleteUserProject" parameterType="Long">
+		update user_projects 
+		   set delete_mark = 1, last_update = UNIX_TIMESTAMP() * 1000
+		 where user_project_id = #{id}
+	</delete>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

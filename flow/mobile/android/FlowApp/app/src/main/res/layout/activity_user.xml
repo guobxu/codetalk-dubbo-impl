@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/user_bgcover"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:src="@drawable/blank_user_bgcover"
+        android:scaleType="centerCrop"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"/>
+
+    <LinearLayout
+        android:id="@+id/user_info_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/user_bgcover"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="-48dp"
+        android:layout_marginLeft="12dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_profile_img"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="left"
+            app:border_color="@color/colorGray"
+            app:border_width="2dp"/>
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/nav_header_vertical_spacing"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/user_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"/>
+
+        <TextView
+            android:id="@+id/user_signature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:id="@+id/user_location_site"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/user_location_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_location_on_accent_18dp"/>
+                <TextView
+                    android:id="@+id/user_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/user_site_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_link_accent_18dp"/>
+                <TextView
+                    android:id="@+id/user_site"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/user_follow_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_follow_count"/>
+            <TextView
+                android:id="@+id/user_text_follow_count"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:text="@string/label_follow_count"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_followed_count"/>
+            <TextView
+                android:id="@+id/user_text_followed_count"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:text="@string/label_follow_count"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/user_edit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edit"
+        android:layout_gravity="end"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/user_bgcover"
+        android:layout_marginTop="@dimen/margin_12dp"
+        android:layout_marginRight="@dimen/margin_12dp"
+        android:visibility="gone"
+        android:minHeight="@dimen/button_min_height_32dp"
+        android:background="@drawable/sel_bg_default_text_btn_8dp"/>
+
+    <Button
+        android:id="@+id/user_btn_follow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/follow"
+        android:layout_gravity="end"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/user_bgcover"
+        android:layout_marginTop="@dimen/margin_12dp"
+        android:layout_marginRight="@dimen/margin_12dp"
+        android:visibility="gone"
+        android:minHeight="@dimen/button_min_height_32dp"
+        android:background="@drawable/sel_bg_default_text_btn_8dp"/>
+
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/user_tab"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:tabTextAppearance="@style/TabTitle"
+        app:tabSelectedTextColor="@color/colorPrimary"
+        android:layout_below="@+id/user_info_left"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/user_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/user_tab"/>
+
+
+</RelativeLayout>
+

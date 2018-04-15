@@ -1,0 +1,94 @@
+<resources
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <!--<item name="android:windowTranslucentNavigation">true</item>-->
+        <!--<item name="android:statusBarColor">@android:color/transparent</item>-->
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ToolBarWithNavigationBack">
+        <item name="navigationIcon">@drawable/abc_ic_ab_back_material</item>
+    </style>
+
+    <style name="Text" parent = "TextAppearance.AppCompat.Body1"/>
+
+    <style name="TextAccent" parent = "TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="title_bg_gray">
+        <item name="android:padding">@dimen/padding_12dp</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:background">@drawable/bg_rect_gray_border_bottom_darkgray_1dp</item>
+    </style>
+
+
+    <style name="TabTitle" parent="TextAppearance.Design.Tab">
+        <item name="android:textColor">@color/colorPrimaryLight</item>
+    </style>
+
+    <style name="ActionBarTitle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title"/>
+
+    <style name="ActionBarText" parent="Text">
+        <item name="android:textColor">@color/action_text_color</item>
+    </style>
+
+    <!-- Progress Bar -->
+    <style name="ProgressbarHorizontalDefault" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:progressTint">@color/colorAccent</item>
+        <item name="android:progressBackgroundTint">@color/colorGray</item>
+        <item name="android:progressDrawable">@drawable/progressbar_drawable_rect</item>
+    </style>
+
+    <!-- Search Input -->
+    <style name="DefaultSearchInput">
+        <item name="android:paddingLeft">@dimen/padding_12dp</item>
+        <item name="android:layout_marginLeft">@dimen/margin_12dp</item>
+        <item name="android:layout_marginTop">@dimen/margin_12dp</item>
+        <item name="android:layout_marginBottom">@dimen/margin_12dp</item>
+        <item name="android:layout_marginRight">@dimen/margin_12dp</item>
+        <item name="android:imeOptions">actionSearch</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:hint">@string/hint_search</item>
+        <item name="android:background">@drawable/bg_rect_gray_radius_8dp</item>
+    </style>
+
+    <!-- Toolbar -->
+    <style name="DefaultToolbar">
+        <item name="android:background">@drawable/bg_rect_default_border_bottom_gray_1dp</item>
+        <item name="android:contentInsetLeft">0dp</item>
+        <item name="android:contentInsetStart">0dp</item>
+        <!--<item name="app:contentInsetLeft">0dp</item>-->
+        <!--<item name="app:contentInsetStart">0dp</item>-->
+        <item name="android:contentInsetRight">0dp</item>
+        <item name="android:contentInsetEnd">0dp</item>
+        <!--<item name="app:contentInsetRight">0dp</item>-->
+        <!--<item name="app:contentInsetEnd">0dp</item>-->
+    </style>
+
+
+
+</resources>
+
+
+
+
+
+
+
+

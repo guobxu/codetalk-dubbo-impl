@@ -1,0 +1,54 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.codetalk.auth.mapper.SessionMapper">
+
+	<resultMap type="me.codetalk.auth.pojo.Session" id="sessionResultMap">
+		<result property="id" column="session_id"></result>
+		<result property="userId" column="user_id"></result>
+		<result property="userLogin" column="user_login"></result>
+		<result property="accessToken" column="access_token"></result>
+		<result property="transportKey" column="transport_key"></result>
+		<result property="pfType" column="pf_type"></result>
+		
+		<result property="attr1" column="attr1"></result>
+		<result property="attr2" column="attr2"></result>
+		<result property="attr3" column="attr3"></result>
+		
+		<result property="lastUpdate" column="last_update"></result>
+		<result property="createDate" column="create_date"></result>
+		<result property="endDate" column="end_date"></result>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		session_id, user_id, user_login, access_token, transport_key, pf_type, 
+		attr1, attr2, attr3, last_update, create_date, end_date
+	</sql>
+	
+	<insert id="insertSession" parameterType="me.codetalk.auth.pojo.Session" useGeneratedKeys="true" keyProperty="id" keyColumn="session_id">
+		insert into auth_sessions (user_id, user_login, access_token, transport_key, pf_type, last_update, create_date)
+		values (
+				#{userId}, #{userLogin}, #{accessToken}, #{transportKey}, #{pfType}, #{lastUpdate}, #{createDate} 
+		)
+	</insert>
+	
+	<select id="selectSession" parameterType="map" resultMap="sessionResultMap">
+		select <include refid="Base_Column_List" />
+		  from auth_sessions
+		 where user_id = #{userId}
+		   and access_token = #{accessToken}
+		   and end_date is NULL
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

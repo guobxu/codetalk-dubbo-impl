@@ -1,0 +1,116 @@
+<resources>
+
+    <string name="app_id">me.codetalk.flowapp</string>
+
+    <string name="app_name">Flow</string>
+
+    <string name="error_network">Network error!</string>
+    <string name="error_unknow">Unknown error!</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="hello_blank_fragment">Hello Blank Fragment</string>
+
+    <string name="lorem">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		In mollis est vitae erat laoreet consectetur. Mauris dui mauris,
+		dictum vel egestas vel, porta sed ante. Phasellus congue viverra ipsum,
+		in elementum arcu ultricies nec.Morbi tincidunt nisl lacinia, placerat nisi eget, luctus tortor.
+		Morbi efficitur dictum leo, sit amet volutpat lorem sodales nec. Quisque et erat et turpis fringilla condimentum.
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris auctor vulputate libero vitae iaculis.
+		Curabitur id blandit quam. Praesent massa ante, pulvinar vitae sagittis commodo, scelerisque porttitor eros.
+		Mauris suscipit a enim nec congue. Mauris tristique cursus aliquet. Nunc quis hendrerit nunc. Praesent tristique tellus purus,
+		a pretium ex gravida id. Cras laoreet malesuada nulla, at bibendum metus ultricies a. Fusce eu ornare arcu. Proin ut molestie est.
+		Vestibulum quis vehicula erat. Nam sed tempus nibh. Sed tortor ante, maximus venenatis odio sed, ultricies maximus lectus.
+		Aliquam sed volutpat ligula. Integer bibendum, magna ac lacinia suscipit,
+		risus libero rutrum justo, sed tempus augue tellus eget est. Curabitur convallis augue nisl,
+		id efficitur urna posuere faucibus. Ut sed egestas nulla, eu finibus metus. Nunc a arcu ante.
+		Aenean ullamcorper dolor non condimentum congue. Aenean mauris nunc, pellentesque at placerat vitae,
+		aliquet quis orci. Curabitur maximus augue ut bibendum sagittis.
+	</string>
+
+    <!-- Nav -->
+    <string name="user">帐户</string>
+
+    <!-- Titles -->
+    <string name="title_home">Home</string>
+    <string name="title_search">Search</string>
+    <string name="title_mesg">Messages</string>
+
+    <!-- Actions -->
+    <string name="edit">编辑</string>
+    <string name="cancel">取消</string>
+    <string name="save">保存</string>
+
+    <string name="follow">关注</string>
+    <string name="unfollow">取消关注</string>
+
+    <string name="label_follow_count">正在关注</string>
+    <string name="label_followed_count">关注者</string>
+
+    <!-- Login -->
+    <string name="hint_user_login">登录名...</string>
+    <string name="hint_passwd">密码...</string>
+    <string name="login">登录</string>
+    <string name="signup">注册</string>
+
+    <string name="login_u"><u>已有账户?</u></string>
+    <string name="signup_u"><u>注册一个新账户</u></string>
+
+    <string name="hint_verify_code">验证码...</string>
+
+    <string name="err_vcode_expired">注册验证码已过期, 请重新输入!</string>
+    <string name="err_cipher_error">运行错误, 请重试!</string>
+
+    <string name="msg_signup_success">注册成功, 正在登录...</string>
+
+    <string name="err_invalid_userlogin">登录名至少5位, 由字母数组或者下划线组成!</string>
+    <string name="err_invalid_passwd">密码至少6位, 包含大小写字母!</string>
+    <string name="err_invalid_vcode">验证码格式错误</string>
+
+    <string name="err_login_failed">登录失败, 请重试!</string>
+
+    <!-- List -->
+    <string name="text_list_loaded">没有更多了...</string>
+    <string name="action_list_reload">重新加载</string>
+
+    <!-- User Edit Profile -->
+    <string name="edit_profile">修改个人信息</string>
+
+    <string name="label_username">用户名</string>
+    <string name="label_signature">签名</string>
+    <string name="label_location">位置</string>
+    <string name="label_site">网站</string>
+
+    <string name="warn_storage_perm_denied">您需要授予读写外部存储的权限!</string>
+
+    <string name="hint_post_text">请输入...</string>
+    <string name="hint_poll_option">选项...</string>
+
+    <string name="tag_btn_cancel_poll">tag_btn_cancel_poll</string>
+    <string name="tag_btn_add_option">tag_btn_add_option</string>
+    <string name="tag_input_poll_option">tag_input_poll_option</string>
+
+    <string name="label_poll_length"><b>时间</b></string>
+
+    <string name="text_search_history">搜索历史</string>
+    <string name="text_search_tip">搜索感兴趣的帖子 / 文章 / 作者.</string>
+
+    <string name="text_tag_topbyday">活跃标签</string>
+
+    <!-- Tag -->
+    <string name="hint_search_tag">搜索标签...</string>
+    <string name="hint_search">搜索...</string>
+
+    <string name="err_max_usertag_reached">最多只能使用%d个标签</string>
+
+    <!-- User Tabs -->
+    <string name="tab_title_post">帖子</string>
+    <string name="tab_title_likes">收藏</string>
+
+    <!-- Comment -->
+    <string name="label_replyto">回复： </string>
+    <string name="hint_input_reply">请评论...</string>
+
+</resources>

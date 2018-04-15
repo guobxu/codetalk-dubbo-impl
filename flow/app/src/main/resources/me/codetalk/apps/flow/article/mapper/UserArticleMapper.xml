@@ -1,0 +1,63 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.codetalk.apps.flow.article.mapper.UserArticleMapper">
+
+	<resultMap id="userArticleResultMap" type="me.codetalk.apps.flow.article.entity.UserArticle">
+		<result property="userId" column="user_id"></result>
+		<result property="articleId" column="article_id"></result>
+		<result property="articleStatus" column="article_status"></result>
+		<result property="readPercent" column="read_percent"></result>
+
+		<result property="lastUpdate" column="last_update"></result>
+		<result property="createDate" column="create_date"></result>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		user_id, article_id, article_status, read_percent, last_update, create_date
+	</sql>
+	
+	<select id="selectLatest" parameterType="map" resultType="Long">
+		select article_id 
+		  from user_articles 
+		 where user_id = #{userId}
+		   and article_status in (
+		   		<foreach collection="statusList" separator="," index="index" item="status">#{status}</foreach>
+		   )
+		 order by last_update desc
+		 limit #{begin}, #{count}
+	</select>
+	
+	<select id="selectInStatus" parameterType="map" resultType="Long">
+		select article_id 
+		  from user_articles 
+		 where user_id = #{userId}
+		   and article_status in (
+		   		<foreach collection="statusList" separator="," index="index" item="status">#{status}</foreach>
+		   )
+	</select>
+	
+	<select id="selectUserArticle" parameterType="map" resultMap="userArticleResultMap">
+		select <include refid="Base_Column_List" />
+		  from user_articles
+		 where user_id = #{userId}
+		   and article_id = #{articleId}
+	</select>
+	
+	<insert id="insertUserArticle" parameterType="me.codetalk.apps.flow.article.entity.UserArticle">
+		insert into user_articles (user_id, article_id, article_status, create_date, last_update)
+		values (#{userId}, #{articleId}, #{articleStatus}, #{createDate}, #{lastUpdate})
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

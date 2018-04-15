@@ -1,0 +1,63 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.codetalk.apps.xiaoma.user.mapper.UserWorkMapper">
+
+	<resultMap id="userWorkResultMap" type="me.codetalk.apps.xiaoma.user.entity.UserWork">
+		<result property="id" column="user_work_id"></result>
+		<result property="userId" column="user_id"></result>
+		<result property="name" column="work_name"></result>
+		<result property="desc" column="work_desc"></result>
+		<result property="url" column="work_url"></result>
+		
+		<result property="images" column="work_images"></result>
+		<result property="video" column="work_video"></result>
+		
+		<result property="createDate" column="create_date"></result>
+		<result property="lastUpdate" column="last_update"></result>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		user_work_id, user_id, work_name, work_desc, work_url, 
+		work_images, work_video, create_date, last_update
+	</sql>
+	
+	<insert id="insertUserWork" parameterType="me.codetalk.apps.xiaoma.user.entity.UserWork" 
+		useGeneratedKeys="true" keyProperty="id" keyColumn="user_work_id">
+		insert into user_works (user_id, work_name, work_desc, work_url, work_images, work_video, create_date, last_update)
+		values (#{userId}, #{name}, #{desc}, #{url}, #{images}, #{video}, UNIX_TIMESTAMP() * 1000, UNIX_TIMESTAMP() * 1000)
+	</insert>
+	
+	<select id="selectUserWorks" parameterType="Long" resultMap="userWorkResultMap">
+		select <include refid="Base_Column_List" />
+		  from user_works
+		 where user_id = #{userId}
+		   and delete_mark = 0
+		 order by create_date desc
+	</select>
+	
+	<update id="updateUserWork" parameterType="me.codetalk.apps.xiaoma.user.entity.UserWork">
+		update user_works 
+		   set work_name = #{name}, work_desc = #{desc}, work_url = #{url}, work_images = #{images}, work_video = #{video}, 
+		   		last_update = UNIX_TIMESTAMP() * 1000
+		 where user_work_id = #{id} 
+	</update>
+	
+	<delete id="deleteUserWork" parameterType="Long">
+		update user_works 
+		   set delete_mark = 1, last_update = UNIX_TIMESTAMP() * 1000
+		 where user_work_id = #{id}
+	</delete>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

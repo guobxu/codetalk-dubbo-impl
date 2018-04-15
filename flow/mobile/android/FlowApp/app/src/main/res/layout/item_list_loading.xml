@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:id="@+id/layout_list_load"
+    android:paddingTop="6dp"
+    android:paddingBottom="12dp">
+
+    <ProgressBar
+        android:id="@+id/progress_list_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/text_list_loaded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/text_list_loaded"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/action_reload_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/action_list_reload"
+        android:visibility="gone"
+        android:textColor="@color/action_text_color"/>
+
+</FrameLayout>

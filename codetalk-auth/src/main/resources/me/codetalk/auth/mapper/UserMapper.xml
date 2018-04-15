@@ -1,0 +1,108 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.codetalk.auth.mapper.UserMapper">
+
+	<resultMap type="me.codetalk.auth.entity.User" id="userResultMap">
+		<result property="id" column="user_id"></result>
+		<result property="login" column="user_login"></result>
+		<result property="name" column="user_name"></result>
+		<result property="profile" column="user_profile"></result>
+		<result property="password" column="user_passwd"></result>
+		<result property="signature" column="user_signature"></result>
+		<result property="mobile" column="user_mobile"></result>
+		<result property="mailVerified" column="mobile_verified"></result>
+		<result property="mail" column="user_mail"></result>
+		<result property="mailVerified" column="mail_verified"></result>
+		<result property="disabled" column="user_disabled"></result>
+		<result property="disableReason" column="disable_reason"></result>
+		
+		<result property="attr1" column="attr1"></result>
+		<result property="attr2" column="attr2"></result>
+		<result property="attr3" column="attr3"></result>
+		
+		<result property="lastUpdate" column="last_update"></result>
+		<result property="updateBy" column="update_by"></result>
+		<result property="createDate" column="create_date"></result>
+		
+		<result property="bgcover" column="user_bgcover"></result>
+		<result property="site" column="user_site"></result>
+		<result property="location" column="user_location"></result>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		user_id, user_login, user_name, user_profile, user_passwd, user_bgcover, user_signature, 
+		user_site, user_mobile, mobile_verified, user_mail, mail_verified, user_disabled, disable_reason, 
+		attr1, attr2, attr3, last_update, update_by, create_date, user_location
+	</sql>
+	
+	<insert id="insertUser" parameterType="me.codetalk.auth.entity.User" useGeneratedKeys="true" keyProperty="id" keyColumn="user_id">
+		insert into auth_users (user_login, user_passwd, create_date, last_update)
+		values (
+				#{login}, #{password}, #{createDate}, #{lastUpdate}
+		)
+	</insert>
+	
+	<select id="selectOneByLogin" parameterType="String" resultType="Integer">
+		select 1 from auth_users where user_login = #{login}
+	</select>
+	
+	<select id="selectUserByLogin" parameterType="String" resultMap="userResultMap">
+		select <include refid="Base_Column_List" />
+		  from auth_users
+		 where user_login = #{login}
+	</select>
+	
+	<select id="selectUserById" parameterType="Long" resultMap="userResultMap">
+		select <include refid="Base_Column_List" />
+		  from auth_users
+		 where user_id = #{userId}
+	</select>
+	
+	<select id="selectUsersByIdList" parameterType="map" resultMap="userResultMap">
+		select <include refid="Base_Column_List" />
+		  from auth_users
+		 where user_id in (
+		 	<foreach collection ="userIdList" item="userId" index= "index" separator =",">#{userId}</foreach >
+		 )
+	</select>
+	
+	<update id="updatePassword" parameterType="map">
+		update auth_users 
+		   set user_passwd = #{password}
+		 where user_id = #{userId}
+	</update>
+	
+	<update id="updateUser" parameterType="map">
+		update auth_users 
+		   set user_name = #{user.name}
+		   <if test="user.profile != null">
+		   	   , user_profile = #{user.profile}
+		   </if>
+		   <if test="user.bgcover != null">
+		   	   , user_bgcover = #{user.bgcover}
+		   </if>
+		   <if test="user.signature != null">
+		   	   , user_signature = #{user.signature}
+		   </if>
+		   <if test="user.site != null">
+		   	   , user_site = #{user.site}
+		   </if>
+		   <if test="user.location != null">
+		   	   , user_location = #{user.location}
+		   </if>
+		 where user_id = #{user.id}
+	</update>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

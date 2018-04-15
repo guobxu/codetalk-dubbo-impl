@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="9dp">
+
+    <EditText
+        android:tag="@string/tag_input_poll_option"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sel_bg_rect_trans_redius_8dp"
+        android:padding="8dp"
+        android:hint="@string/hint_poll_option"/>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:minWidth="30dp"
+        android:layout_gravity="center">
+
+        <ImageButton
+            android:tag="@string/tag_btn_cancel_poll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sel_clear_18dp"
+            android:background="@drawable/sel_bg_circle_gray_18dp"/>
+
+        <ImageButton
+            android:tag="@string/tag_btn_add_option"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sel_add_18dp"
+            android:background="@drawable/sel_bg_circle_gray_18dp"/>
+
+    </FrameLayout>
+
+</LinearLayout>

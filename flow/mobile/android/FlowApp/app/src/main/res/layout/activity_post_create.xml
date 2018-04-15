@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="me.codetalk.flowapp.post.activity.PostCreateActivity"
+    android:fitsSystemWindows="true">
+
+    <ProgressBar
+        android:id="@+id/pc_progress_post_create"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="3dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:visibility="gone"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pc_progress_post_create"
+            android:layout_marginLeft="@dimen/margin_12dp"
+            android:layout_marginRight="@dimen/margin_12dp"
+            android:paddingTop="@dimen/padding_12dp"
+            android:paddingBottom="64dp"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_profile_img"
+                android:layout_width="@dimen/profile_width_small"
+                android:layout_height="@dimen/profile_height_small"
+                app:border_color="@color/colorGray"
+                app:border_width="2dp"
+                android:layout_alignParentTop="true"/>
+
+            <RelativeLayout
+                android:id="@+id/pc_post_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_6dp">
+
+                <EditText
+                    android:id="@+id/pc_text_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:lines="5"
+                    android:gravity="top"
+                    android:hint="@string/hint_post_text"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/pc_post_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pc_text_content"
+                    android:layout_alignLeft="@+id/pc_text_content"
+                    android:layout_marginTop="@dimen/margin_12dp"/>
+
+                <LinearLayout
+                    android:id="@+id/pc_poll_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_below="@+id/pc_text_content"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    android:background="@drawable/bg_rect_trans_radius_normal_8dp"
+                    android:padding="@dimen/padding_12dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/pc_option_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:animateLayoutChanges="true"/>
+
+                    <LinearLayout
+                        android:id="@+id/pc_duration_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_6dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/margin_6dp"
+                                android:text="@string/label_poll_length"/>
+
+                            <TextView
+                                android:id="@+id/pc_text_poll_duration"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content" />
+
+                            <ImageButton
+                                android:id="@+id/pc_btn_show_picker"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/sel_arrow_down_24dp"
+                                android:background="@android:color/transparent"
+                                android:layout_gravity="center_vertical|left"
+                                android:layout_marginRight="@dimen/margin_18dp"
+                                android:text="Show Picker"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/pc_picker_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone">
+
+                            <NumberPicker
+                                android:id="@+id/picker_day"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:tooltipText="Day"
+                                android:descendantFocusability="blocksDescendants"/>
+
+                            <NumberPicker
+                                android:id="@+id/picker_hour"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:tooltipText="Hour"
+                                android:descendantFocusability="blocksDescendants"/>
+
+                            <NumberPicker
+                                android:id="@+id/picker_min"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:tooltipText="Min"
+                                android:descendantFocusability="blocksDescendants"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/pc_action_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_rect_default_border_top_gray_1dp"
+        android:paddingBottom="@dimen/padding_12dp">
+
+        <ImageButton
+            android:id="@+id/pc_btn_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:layout_marginLeft="@dimen/margin_12dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/sel_pc_add_photo_24dp"
+            android:background="@android:color/transparent"
+            android:layout_alignParentLeft="true"/>
+
+        <ImageButton
+            android:id="@+id/pc_btn_poll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/sel_pc_add_poll_24dp"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:layout_marginLeft="@dimen/margin_12dp"
+            android:layout_toRightOf="@id/pc_btn_img"/>
+
+        <me.codetalk.custom.view.ImageSpinnerButton
+            android:id="@+id/pc_btn_done"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:layout_marginRight="@dimen/margin_12dp"
+            android:src="@drawable/sel_action_done_24dp"
+            android:background="@android:color/transparent"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,51 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.codetalk.webminer.mapper.WebEntityMapper">
+	
+	<resultMap type="me.codetalk.webminer.pojo.WebEntity" id="webEntityMap">
+		<result property="id" column="entity_id"></result>
+		<result property="siteId" column="site_id"></result>
+		<result property="entityTypeId" column="entity_type_id"></result>
+		<result property="pageUrl" column="page_url"></result>
+		<result property="indexed" column="entity_indexed"></result>
+		<result property="createDate" column="create_date"></result>
+	</resultMap>
+
+	<resultMap type="me.codetalk.webminer.pojo.WebEntityVO" id="webEntityVOMap" extends="webEntityMap">
+		<result property="site" column="site_name"></result>
+		<result property="entityType" column="entity_type"></result>
+	
+		<collection property="attrs" ofType="me.codetalk.webminer.pojo.WebEntityAttr">
+			<result property="key" column="attr_key"></result>
+			<result property="val" column="attr_val"></result>
+		</collection>
+	</resultMap>
+	
+	<insert id="insertEntity" parameterType="me.codetalk.webminer.pojo.WebEntity" useGeneratedKeys="true" keyProperty="id" keyColumn="entity_id">
+		insert into web_entities(site_id, entity_type_id, page_url)
+		values (#{siteId}, #{entityTypeId}, #{pageUrl})
+	</insert>
+	
+	<select id="selectEntity" parameterType="map" resultMap="webEntityVOMap">
+		select t.entity_id, t.site_id, t.entity_type_id, t.page_url, 
+			 s.site_name, et.entity_type, ea.attr_key, ea.attr_val
+		from (select * from web_entities order by entity_id asc limit #{begin}, #{count}) t, 
+				 web_entity_attrs ea, sites s, site_entity_types et
+	 where t.entity_id = ea.entity_id
+	   and t.site_id = s.site_id
+	   and t.entity_type_id = et.entity_type_id
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

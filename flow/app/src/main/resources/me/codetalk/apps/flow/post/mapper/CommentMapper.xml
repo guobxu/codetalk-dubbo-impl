@@ -1,0 +1,169 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.codetalk.apps.flow.post.mapper.CommentMapper">
+
+	<resultMap id="commentVOResultMap" type="me.codetalk.apps.flow.post.entity.vo.CommentVO">
+		<result property="id" column="comment_id"></result>
+		<result property="userId" column="user_id"></result>
+		<result property="postId" column="post_id"></result>
+		<result property="commentReply" column="comment_reply"></result>
+		<result property="thread" column="comment_thread"></result>
+		<result property="content" column="comment_content"></result>
+		<result property="tags" column="comment_tags"></result>
+		<result property="images" column="comment_imgs"></result>
+		<result property="mentions" column="comment_mentions"></result>
+		<result property="level" column="comment_level"></result>
+		<result property="ancestors" column="comment_ancestors"></result>
+		<result property="deleteMark" column="delete_mark"></result>
+		<result property="deleteReason" column="delete_reason"></result>
+
+		<result property="lastUpdate" column="last_update"></result>
+		<result property="updateBy" column="update_by"></result>
+		<result property="createDate" column="create_date"></result>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		comment_id, user_id, post_id, comment_reply, comment_thread, comment_content, comment_tags, 
+		comment_imgs, comment_mentions, comment_level, comment_ancestors, delete_mark, delete_reason, 
+		last_update, update_by, create_date
+	</sql>
+	
+	<insert id="insertComment" parameterType="me.codetalk.apps.flow.post.entity.Comment" 
+			useGeneratedKeys="true" keyProperty="id" keyColumn="comment_id">
+		insert into comments (user_id, post_id, comment_reply, comment_content, comment_imgs, create_date)
+		values (#{userId}, #{postId}, #{commentReply}, #{content}, #{images}, #{createDate})
+	</insert>
+	
+	<select id="selectCommentById" parameterType="map" resultMap="commentVOResultMap">
+		select <include refid="Base_Column_List" />
+		  from comments 
+		 where comment_id = #{cmntId}
+		   and delete_mark = 0
+		   <if test="forUpdate == true">
+				for update
+			</if>
+	</select>
+	
+	<select id="selectCommentIn" parameterType="java.util.List" resultMap="commentVOResultMap">
+		select <include refid="Base_Column_List" />
+		  from comments 
+		 where comment_id in (
+		 	<foreach collection ="cmntIdList" item="cmntId" index= "index" separator =",">#{cmntId}</foreach>
+		 )
+		   and delete_mark = 0
+	</select>
+	
+	<update id="updateComment" parameterType="me.codetalk.apps.flow.post.entity.Comment">
+		update comments set comment_id = comment_id
+			<if test="postId != null">
+				, post_id = #{postId}
+			</if>
+			<if test="tags != null">
+				, comment_tags = #{tags}
+			</if>
+			<if test="thread != null">
+				, comment_thread = #{thread}
+			</if>
+			<if test="mentions != null">
+				, comment_mentions = #{mentions}
+			</if>
+			<if test="level != null">
+				, comment_level = #{level}
+			</if>
+			<if test="ancestors != null">
+				, comment_ancestors = #{ancestors}
+			</if>
+		 where comment_id = #{id} 
+	</update>
+	
+	<select id="selectLikedIn" parameterType="map" resultType="Long">
+		select comment_id 
+		  from comment_likes 
+		 where user_id = #{userId} 
+		   and comment_id in (
+		   	   <foreach collection ="cmntIdList" item="cmntId" index= "index" separator =",">#{cmntId}</foreach>
+		   )
+	</select>
+	
+	<select id="selectThreadCommentsByPost" parameterType="java.lang.Long" resultMap="commentVOResultMap">
+		select c2.comment_id, c2.user_id, c2.post_id, c2.comment_reply, 
+				c2.comment_content, c2.comment_tags, c2.comment_imgs, c2.comment_thread, 
+				c2.comment_mentions, c2.comment_level, c2.comment_ancestors, c2.create_date
+		  from comments c1 
+		  left JOIN comments c2 on c1.comment_thread = c2.comment_thread
+		 where c1.post_id = #{postId}
+		   and c1.comment_reply is null
+		 order by c2.comment_thread, c2.comment_level asc
+	</select>
+	
+	<select id="selectThreadCommentsByComment" parameterType="java.lang.Long" resultMap="commentVOResultMap">
+		select <include refid="Base_Column_List" /> 
+		  from comments 
+		 where comment_thread in (
+				select distinct comment_thread from comments 
+				 where comment_id = #{cmntId} or comment_reply = #{cmntId}) 
+	 	 order by comment_thread, comment_level asc
+	</select>
+	
+	<insert id="insertCommentLike" parameterType="map">
+		insert into comment_likes(user_id, comment_id, create_date) 
+		values (#{userId}, #{cmntId}, UNIX_TIMESTAMP() * 1000)
+	</insert>
+	
+	<delete id="deleteCommentLike" parameterType="map">
+		delete from comment_likes where comment_id = #{cmntId} and user_id = #{userId}
+	</delete>
+	
+	<select id="countCommentReply" parameterType="Long" resultType="Integer">
+		select count(1) from comments 
+		 where comment_reply = #{cmntId}
+	</select>
+	
+	<select id="countThreadedReply" parameterType="Long" resultType="Integer">
+		select count(1) from comments 
+		 where comment_reply = #{cmntId}
+		   and comment_thread is not null
+	</select>
+	
+	<select id="selectCommentInThread" parameterType="Long" resultMap="commentVOResultMap">
+		select c2.comment_id, c2.user_id, c2.comment_content, c2.comment_tags, c2.comment_imgs, 
+				c2.comment_thread, c2.comment_mentions, c2.comment_level, c2.comment_ancestors, 
+				c2.create_date
+		  from comments c1, comments c2
+		 where c1.comment_id = #{cmntId} 
+		   and c1.comment_thread = c2.comment_thread
+		   and c2.comment_level >= c1.comment_level
+		 order by c2.comment_level asc
+	</select>
+	
+	<select id="selectCommentsOnPath" parameterType="map" resultMap="commentVOResultMap">
+		select c2.comment_id, c2.user_id, c2.comment_content, c2.comment_tags, c2.comment_imgs, 
+				c2.comment_thread, c2.comment_mentions, c2.comment_level, c2.comment_ancestors, 
+				c2.create_date
+		  from comments c1, comments c2
+		 where c1.comment_id = #{cmntId} 
+		   and c1.comment_thread = c2.comment_thread
+		   and c2.comment_level >= c1.comment_level
+			<if test="cmntIdList != null and cmntIdList.size() > 0">
+				union ALL
+				select <include refid="Base_Column_List" />
+				  from comments where comment_id in (
+				  	<foreach collection="cmntIdList" separator="," index="index" item="commentId">#{commentId}</foreach>
+				  )
+			</if>
+		 order by comment_level asc
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

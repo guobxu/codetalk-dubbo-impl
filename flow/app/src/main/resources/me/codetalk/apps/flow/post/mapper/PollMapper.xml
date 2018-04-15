@@ -1,0 +1,46 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.codetalk.apps.flow.post.mapper.PollMapper">
+
+	<resultMap id="pollResultMap" type="me.codetalk.apps.flow.post.entity.Poll">
+		<result property="id" column="poll_id"></result>
+		<result property="postId" column="post_id"></result>
+		<result property="duration" column="poll_duration"></result>
+		<result property="start" column="poll_start"></result>
+		<result property="end" column="poll_end"></result>
+		
+		<collection property="options" ofType="me.codetalk.apps.flow.post.entity.PollOption" javaType="list">
+	  		<result property="id" column="option_id"></result>
+			<result property="text" column="option_text"></result>
+	  	</collection>
+	</resultMap>
+	
+	<insert id="insertPoll" parameterType="me.codetalk.apps.flow.post.entity.Poll" 
+			useGeneratedKeys="true" keyProperty="id" keyColumn="poll_id">
+		insert into polls (post_id, poll_duration, poll_start, poll_end, create_date)
+		values (#{postId}, #{duration}, #{start}, #{end}, #{createDate})
+	</insert>
+	
+	<insert id="insertPollOptions" parameterType="java.util.List">
+		insert into poll_options (poll_id, option_text, create_date) 
+		values 
+		<foreach collection="list" item="option" index="index" separator=",">
+			(
+				#{option.pollId}, #{option.text}, #{option.createDate}
+			)
+		</foreach >
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="me.codetalk.flowapp.post.activity.CommentCreateActivity"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:id="@+id/cc_comment_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="@dimen/padding_12dp"
+        android:paddingRight="@dimen/padding_12dp"
+        android:paddingTop="@dimen/padding_12dp">
+
+        <LinearLayout
+            android:id="@+id/cc_reply_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignLeft="@+id/cc_comment_content"
+            android:layout_marginBottom="@dimen/margin_6dp">
+
+            <TextView android:id="@+id/cc_label_replyto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_replyto"/>
+
+            <TextView
+                android:id="@+id/cc_text_replylist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"/>
+
+        </LinearLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_profile_img"
+            android:layout_width="@dimen/profile_width_small"
+            android:layout_height="@dimen/profile_height_small"
+            app:border_color="@color/colorGray"
+            app:border_width="2dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/cc_reply_container"/>
+
+        <EditText
+            android:id="@+id/cc_comment_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_6dp"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:gravity="top"
+            android:hint="@string/hint_input_reply"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/user_profile_img"
+            android:layout_below="@id/cc_reply_container"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/cc_action_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_rect_default_border_top_gray_1dp"
+        android:paddingBottom="@dimen/padding_12dp">
+
+        <me.codetalk.custom.view.ImageSpinnerButton
+            android:id="@+id/cc_btn_done"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:layout_marginRight="@dimen/margin_12dp"
+            android:src="@drawable/sel_action_done_24dp"
+            android:background="@android:color/transparent"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

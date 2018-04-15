@@ -1,0 +1,57 @@
+
+server.port = 9080
+server.connection-timeout = 25000
+# server.tomcat.max-connections = 10000
+
+spring.http.multipart.maxFileSize=10Mb
+spring.http.multipart.maxRequestSize=10Mb
+
+## 365
+spring.resources.cache-period = 31536000
+
+proxy.file-server= http://192.168.1.105/
+
+################### Dubbo Configuration ##########################
+spring.dubbo.application.name=Proxy
+spring.dubbo.registry.address=zookeeper://127.0.0.1:2186
+spring.dubbo.protocol.name=dubbo
+
+################### Redis Configuration ##########################
+
+#连接池建立最大阻塞等待时间
+spring.redis.pool.max-wait=1000
+#超时设置
+spring.redis.timeout=10000
+
+# Mesg
+mesg.redis.host=192.168.1.105
+mesg.redis.port=9086
+
+mesg.redis.pool.max-total=60
+mesg.redis.pool.max-idle=20 
+mesg.redis.pool.min-idle=10
+
+# Mesg Sender
+mesg.sender.core-pool-size = 3
+mesg.sender.max-pool-size = 6
+mesg.sender.keep-alive-millis = 60000
+
+################### FastDFS client config ###################
+fdfs.connectTimeout = 5
+fdfs.networkTimeout = 30
+fdfs.charset = ISO8859-1
+# fdfs.trackerServers = 192.168.1.250:22122,192.168.1.251:22122
+fdfs.trackerServers = 192.168.1.105:22122
+
+
+
+
+
+
+
+
+
+
+
+
+

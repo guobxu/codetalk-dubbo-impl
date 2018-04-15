@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="me.codetalk.flowapp.search.activity.SearchActivity"
+    android:fitsSystemWindows="true">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/search_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        style="@style/DefaultToolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_profile_img"
+                android:layout_width="@dimen/profile_width_small"
+                android:layout_height="@dimen/profile_height_small"
+                app:border_color="@color/colorGray"
+                app:border_width="2dp"
+                android:layout_marginLeft="@dimen/margin_12dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"/>
+
+            <EditText
+                android:id="@+id/search_input"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/user_profile_img"
+                android:layout_toLeftOf="@+id/search_create_post"
+                style="@style/DefaultSearchInput"/>
+
+            <ImageButton
+                android:id="@+id/search_btn_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/sel_clear_18dp"
+                android:background="@drawable/sel_bg_circle_darkgray_18dp"
+                android:layout_marginRight="@dimen/margin_6dp"
+                android:layout_centerVertical="true"
+                android:layout_alignRight="@+id/search_input"
+                android:visibility="gone"/>
+
+            <ImageButton
+                android:id="@+id/search_create_post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/sel_post_create_24dp"
+                android:background="@android:color/transparent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/margin_12dp"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout
+        android:id="@+id/search_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/search_toolbar">
+
+    </FrameLayout>
+
+</RelativeLayout>

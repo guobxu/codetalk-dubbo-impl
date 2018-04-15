@@ -1,0 +1,45 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.codetalk.apps.flow.fnd.mapper.UserTagMapper">
+
+	<resultMap id="userTagResultMap" type="me.codetalk.apps.flow.fnd.entity.UserTag">
+		<result property="userId" column="user_id"></result>
+		<result property="tag" column="tag_text"></result>
+		<result property="createDate" column="create_date"></result>
+	</resultMap>
+	
+	<resultMap id="userTagVOResultMap" type="me.codetalk.apps.flow.fnd.entity.vo.UserTagVO" extends="userTagResultMap">
+		<result property="hits" column="tag_hits"></result>
+	</resultMap>
+	
+	<insert id="insertUserTag" parameterType="java.util.List">
+		insert into user_tags (user_id, tag_text, create_date)
+		values 
+		<foreach collection ="list" item="userTag" index= "index" separator =",">
+		(#{userTag.userId}, #{userTag.tag}, #{userTag.createDate})
+		</foreach>
+	</insert>
+	
+	<delete id="deleteUserTag" parameterType="map">
+		delete from user_tags where user_id = #{userId}
+	</delete>
+	
+	<select id="selectUserTag" parameterType="map" resultMap="userTagVOResultMap">
+		select ut.tag_text, t.tag_hits from user_tags ut, tags t
+		 where ut.user_id = #{userId} and ut.tag_text = t.tag_text
+		 order by ut.create_date desc, t.tag_hits desc
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

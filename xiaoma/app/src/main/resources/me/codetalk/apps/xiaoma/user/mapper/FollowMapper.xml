@@ -1,0 +1,71 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.codetalk.apps.xiaoma.user.mapper.FollowMapper">
+
+	<resultMap id="followResultMap" type="me.codetalk.apps.xiaoma.user.entity.Follow">
+		<result property="userId" column="user_id"></result>
+		<result property="userFollow" column="f_user_id"></result>
+		
+		<result property="createDate" column="create_date"></result>
+	</resultMap>
+	
+	<insert id="insertFollow" parameterType="me.codetalk.apps.xiaoma.user.entity.Follow">
+		insert into user_follows (user_id, f_user_id, create_date)
+		values (#{userId}, #{userFollow}, unix_timestamp() * 1000)
+	</insert>
+
+	<delete id="deleteFollow" parameterType="map">
+		delete from user_follows where user_id = #{userId} and f_user_id = #{userFollow}
+	</delete>
+	
+	<select id="countFollow" parameterType="Long" resultType="Integer">
+		select count(1) from user_follows where user_id = #{userId}
+	</select>
+	
+	<select id="countFollowedBy" parameterType="Long" resultType="Integer">
+		select count(1) from user_follows where f_user_id = #{userId}
+	</select>
+	
+	<select id="selectFollow" parameterType="map" resultType="Long">
+		select f_user_id from user_follows
+		 where user_id = #{userId}
+		 order by create_date desc
+		 limit #{begin}, #{count}
+	</select>
+	
+	<select id="selectFollowedBy" parameterType="map" resultType="Long">
+		select user_id from user_follows
+		 where f_user_id = #{userId}
+		 order by create_date desc
+		 limit #{begin}, #{count}
+	</select>
+	
+	<select id="selectOne" parameterType="map" resultMap="followResultMap">
+		select user_id, f_user_id, create_date
+		  from user_follows
+		 where user_id = #{userId} 
+		   and f_user_id = #{userFollow}
+	</select>
+	
+	<select id="selectFollowIn" parameterType="map" resultType="Long">
+		select f_user_id 
+		  from user_follows 
+		 where user_id = #{userId} 
+		   and f_user_id in (
+		   	   <foreach collection ="userFollowList" item="userFollow" index= "index" separator =",">#{userFollow}</foreach>
+		   )
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

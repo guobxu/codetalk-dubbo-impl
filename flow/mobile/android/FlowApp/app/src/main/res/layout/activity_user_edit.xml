@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+
+    <include
+        layout="@layout/toolbar_default"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:id="@+id/useredit_bgcovor_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar_default">
+
+        <ImageView
+            android:id="@+id/useredit_bgcover"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:src="@drawable/blank_user_bgcover"
+            android:scaleType="centerCrop"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"/>
+
+        <ImageButton
+            android:id="@+id/useredit_btn_bgcover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sel_add_photo_24dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"/>
+
+        <ProgressBar
+            android:id="@+id/useredit_progress_bgcover"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/useredit_profile_container"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_below="@+id/useredit_bgcovor_container"
+        android:layout_marginTop="-48dp"
+        android:layout_marginLeft="20dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/useredit_profile_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            app:border_color="@color/colorGray"
+            app:border_width="2dp"/>
+
+        <ImageButton
+            android:id="@+id/useredit_btn_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/sel_add_photo_24dp"
+            android:background="@android:color/transparent"/>
+
+        <ProgressBar
+            android:id="@+id/useredit_progress_profile"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="48dp"
+            android:layout_height="3dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8dp"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/useredit_profile_container"
+        android:layout_marginTop="32dp"
+        android:columnCount="2"
+        android:verticalSpacing="1dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_username"
+            android:paddingRight="16dp"/>
+        <EditText
+            android:id="@+id/useredit_input_username"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:layout_weight="1"
+            android:inputType="text"
+            android:maxLines="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_signature"
+            android:layout_gravity="top"
+            android:paddingRight="16dp"/>
+        <EditText
+            android:id="@+id/useredit_input_signature"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:inputType="textMultiLine"
+            android:lines="3"
+            android:maxLines="3"
+            android:gravity="top"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_location"
+            android:paddingRight="16dp"/>
+        <EditText
+            android:id="@+id/useredit_input_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:inputType="text"
+            android:maxLines="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_site"
+            android:paddingRight="16dp"/>
+        <EditText
+            android:id="@+id/useredit_input_site"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:inputType="text"
+            android:maxLines="1"/>
+
+    </GridLayout>
+
+</RelativeLayout>

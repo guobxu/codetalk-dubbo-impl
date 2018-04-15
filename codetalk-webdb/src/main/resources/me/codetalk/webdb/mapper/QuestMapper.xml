@@ -1,0 +1,85 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.codetalk.webdb.mapper.QuestMapper">
+
+	<resultMap type="me.codetalk.webdb.entity.Quest" id="questResultMap">
+		<result property="id" column="quest_id"></result>
+		<result property="uuid" column="quest_uuid"></result>
+		<result property="site" column="quest_site"></result>
+		<result property="url" column="quest_url"></result>
+		<result property="title" column="quest_title"></result>
+		<result property="content" column="quest_content"></result>
+		<result property="answer" column="quest_answer"></result>
+		<result property="tags" column="quest_tags"></result>
+		<result property="votes" column="quest_votes"></result>
+		<result property="answerAccept" column="answer_accepted"></result>
+		<result property="indexed" column="quest_indexed"></result>
+		<result property="createDate" column="create_date"></result>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+	    quest_id, quest_uuid, quest_site, quest_url, quest_title, quest_content, quest_answer, 
+	    quest_tags, quest_votes, answer_accepted, quest_indexed, create_date 
+  	</sql>
+	
+	<insert id="insertQuest" parameterType="me.codetalk.webdb.entity.Quest" useGeneratedKeys="true" keyProperty="id" keyColumn="quest_id">
+		insert into web_quests(quest_uuid, quest_site, quest_url, quest_title, quest_content, quest_answer, 
+	    						 quest_tags, quest_votes, answer_accepted, quest_indexed, create_date)
+		values (
+			#{uuid}, #{site}, #{url}, #{title}, #{content}, #{answer}, #{tags}, #{votes}, #{answerAccept}, #{indexed}, #{createDate}
+		)
+	</insert>
+	
+	<update id="updateQuestIndexed" parameterType="Long">
+		update web_quests set quest_indexed = 1 where quest_id = #{questId}
+	</update>
+	
+	<select id="selectOneByUuid" parameterType="String" resultType="Integer">
+		select 1 from web_quests where quest_uuid = #{uuid}
+	</select>
+	
+	<select id="selectOneByUrl" parameterType="String" resultType="Integer">
+		select 1 from web_quests where quest_url = #{url}
+	</select>
+	
+	<!-- devonly -->
+	<select id="selectIndex0" parameterType="map" resultMap="questResultMap">
+		select <include refid="Base_Column_List" />
+		  from web_quests 
+		 order by quest_id asc
+		 limit #{begin}, #{count} 
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

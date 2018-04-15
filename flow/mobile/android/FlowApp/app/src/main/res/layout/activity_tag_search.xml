@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="me.codetalk.flowapp.fnd.activity.TagSearchActivity"
+    android:fitsSystemWindows="true">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tagsearch_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        style="@style/DefaultToolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_profile_img"
+                android:layout_width="@dimen/profile_width_small"
+                android:layout_height="@dimen/profile_height_small"
+                app:border_color="@color/colorGray"
+                app:border_width="2dp"
+                android:layout_marginLeft="@dimen/margin_12dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"/>
+
+            <EditText
+                android:id="@+id/tagsearch_search_input"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:hint="@string/hint_search_tag"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/user_profile_img"
+                android:layout_toLeftOf="@+id/tagsearch_save_container"
+                style="@style/DefaultSearchInput"/>
+
+            <ImageButton
+                android:id="@+id/tagsearch_btn_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/sel_clear_18dp"
+                android:background="@drawable/sel_bg_circle_darkgray_18dp"
+                android:layout_marginRight="@dimen/margin_6dp"
+                android:layout_centerVertical="true"
+                android:layout_alignRight="@+id/tagsearch_search_input"
+                android:visibility="gone"/>
+
+            <RelativeLayout
+                android:id="@+id/tagsearch_save_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/margin_12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true">
+
+                <me.codetalk.custom.view.SpinnerButton
+                    xmlns:flow="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/tagsearch_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    flow:actionButtonText="@string/save"
+                    flow:actionButtonTextColor="@color/action_text_color"
+                    flow:actionButtonBackground="@drawable/sel_bg_default_text_btn_8dp"
+                    flow:actionButtonPaddingLeft="6dp"
+                    flow:actionButtonPaddingRight="32dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"/>
+
+                <TextView
+                    android:id="@+id/tagsearch_text_sel_tagcount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_circle_accent_18dp"
+                    android:layout_toRightOf="@+id/tagsearch_save"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="-30dp"
+                    android:textColor="@android:color/white"
+                    android:gravity="center"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/tagsearch_tag_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tagsearch_toolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:paddingTop="@dimen/padding_18dp"/>
+
+</RelativeLayout>

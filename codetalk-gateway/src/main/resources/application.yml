@@ -1,0 +1,72 @@
+--- 
+eureka: 
+  client: 
+    serviceUrl: 
+      defaultZone: "http://localhost:2000/eureka/"
+feign: 
+  hystrix: enabled=true
+hystrix: 
+  command: 
+    default: 
+      circuitBreaker: "requestVolumeThreshold:1 sleepWindowInMilliseconds:5000"
+      execution: 
+        isolation: 
+          thread: "timeoutInMilliseconds:60000"
+        timeout:
+          enabled: false
+# logging: "config:classpath:log4j2.xml"
+
+server: 
+  port: 8000
+  # tomcat: "max-threads:256 min-spare-threads:64 io-threads:8 basedir:./ access_log_enabled:true access_log_pattern:%h %p %t %r %s %b"
+spring:
+  application:
+    name: codetalk-gateway
+  cloud: 
+    loadbalancer: 
+      retry: "enabled:true"
+    # stream:
+    #   kafka:
+    #     binder: "brokers:172.31.34.128:9092 zkNodes:172.31.34.128:2181"
+  # sleuth:
+  #   sampler: "percentage:1.0"
+  http:
+    multipart:
+      max-file-size: 100Mb
+      max-request-size: 100Mb
+zuul: 
+  AccessFilter: 
+    pre: "disable:false"
+  host: 
+    connect-timeout-millis: 3000
+    maxPerRouteConnections: 300
+    maxTotalConnections: 1000
+    socket-timeout-millis: 10000
+  ignoreSecurityHeaders: false
+  routes: 
+    codetalk-auth:
+      path: /auth/**
+      serviceId: codetalk-auth
+    codetalk-user:
+      path: /user/**
+      serviceId: codetalk-user
+    codetalk-news:
+      path: /news/**
+      serviceId: codetalk-news
+    codetalk-article:
+      path: /article/**
+      serviceId: codetalk-article
+    codetalk-quest:
+      path: /quest/**
+      serviceId: codetalk-quest
+  sensitiveHeaders: "Cookie,Set-Cookie"
+  ribbon-isolation-strategy: semaphore
+  semaphore:
+    max-semaphores: 2000
+
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+  OkToRetryOnAllOperations: true
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 1

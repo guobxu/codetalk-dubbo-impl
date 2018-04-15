@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="me.codetalk.flowapp.main.fragment.SearchFragment"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text_search_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_search_tip"
+        android:padding="@dimen/padding_12dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/title_top_tags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_tag_topbyday"
+        style="@style/title_bg_gray"
+        android:visibility="gone"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list_tags_topbyday"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone"/>
+
+</LinearLayout>
